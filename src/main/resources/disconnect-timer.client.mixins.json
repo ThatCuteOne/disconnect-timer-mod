@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "thatcuteone.disconnecttimer.mixin.client",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+      "GameMenuScreenMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
