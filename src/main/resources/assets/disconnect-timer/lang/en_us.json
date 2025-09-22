@@ -1,0 +1,9 @@
+{
+  "disconnect_timer.config.title" : "Disconnect Timer Config",
+  "disconnect_timer.config.enable_mod": "Mod Enabled",
+  "disconnect_timer.config.enable_mod.tooltip": "Whether the mod is enabled.",
+  "disconnect_timer.config.timer": "Enable Timer (in sec)",
+  "disconnect_timer.config.timer.tooltip": "How long it takes for the Button to Enable(in seconds)",
+  "disconnect_timer.config.enable_singleplayer": "Enable Singleplayer",
+  "disconnect_timer.config.enable_singleplayer.tooltip" : "If the mod's functionality should appy to Singleplayer"
+}
