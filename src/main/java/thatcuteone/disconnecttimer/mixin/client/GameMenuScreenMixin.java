@@ -43,7 +43,7 @@ public class GameMenuScreenMixin {
         if (MinecraftClient.getInstance().isInSingleplayer() && !config.applyToSingleplayer){
             return;
         }
-        //timer -= 0.05d;
+        timer -= 0.05d;
         if (this.exitButton != null && timer <= 0) {;
             this.exitButton.setMessage(original_text);
             this.exitButton.active = true;
