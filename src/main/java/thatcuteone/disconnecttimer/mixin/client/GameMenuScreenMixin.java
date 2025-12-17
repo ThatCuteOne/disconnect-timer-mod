@@ -1,9 +1,9 @@
 package thatcuteone.disconnecttimer.mixin.client;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.GameMenuScreen;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.Text;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.PauseScreen;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -14,44 +14,44 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import static thatcuteone.disconnecttimer.DisconnectConfigKt.config;
 
 
-@Mixin(GameMenuScreen.class)
+@Mixin(PauseScreen.class)
 public class GameMenuScreenMixin {
     private Double timer;
-    private Text original_text;
+    private Component original_text;
     @Shadow
     @Nullable
-    private ButtonWidget exitButton;
+    private Button disconnectButton;
 
-	@Inject(at = @At("TAIL"), method = "initWidgets")
+	@Inject(at = @At("TAIL"), method = "createPauseMenu")
     private void handleExitButtonState(CallbackInfo ci) {
         if (!config.modEnabled) return;
-        if (MinecraftClient.getInstance().isInSingleplayer() && !config.applyToSingleplayer){
+        if (Minecraft.getInstance().isSingleplayer() && !config.applyToSingleplayer){
             return;
         }
         timer = config.timer;
-        if (this.exitButton != null) {
-            original_text = this.exitButton.getMessage();
-            this.exitButton.active = false;
-            this.exitButton.setMessage(
-                    Text.literal(String.format("%s (%.1fs)",original_text.getString(), timer))
+        if (this.disconnectButton != null) {
+            original_text = this.disconnectButton.getMessage();
+            this.disconnectButton.active = false;
+            this.disconnectButton.setMessage(
+                    Component.literal(String.format("%s (%.1fs)",original_text.getString(), timer))
             );
         }
     }
     @Inject(method = "tick", at = @At("TAIL"))
     private void checkButtonState(CallbackInfo ci) {
         if (!config.modEnabled) return;
-        if (MinecraftClient.getInstance().isInSingleplayer() && !config.applyToSingleplayer){
+        if (Minecraft.getInstance().isSingleplayer() && !config.applyToSingleplayer){
             return;
         }
         timer -= 0.05d;
-        if (this.exitButton != null && timer <= 0) {;
-            this.exitButton.setMessage(original_text);
-            this.exitButton.active = true;
+        if (this.disconnectButton != null && timer <= 0) {;
+            this.disconnectButton.setMessage(original_text);
+            this.disconnectButton.active = true;
         }
         else {
-            assert this.exitButton != null;
-            this.exitButton.setMessage(
-                    Text.literal(String.format("%s (%.1fs)",original_text.getString(), timer))
+            assert this.disconnectButton != null;
+            this.disconnectButton.setMessage(
+                    Component.literal(String.format("%s (%.1fs)",original_text.getString(), timer))
             );
         }
     }

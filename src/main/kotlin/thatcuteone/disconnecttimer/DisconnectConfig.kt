@@ -8,9 +8,8 @@ import dev.isxander.yacl3.config.v2.api.ConfigClassHandler
 import dev.isxander.yacl3.config.v2.api.SerialEntry
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder
 import net.fabricmc.loader.api.FabricLoader
-import net.minecraft.text.Text
-import net.minecraft.util.Identifier
-
+import net.minecraft.network.chat.Component
+import net.minecraft.resources.Identifier
 
 
 class DisconnectConfig {
@@ -27,18 +26,18 @@ class DisconnectConfig {
 
     fun createConfigBuilder(): YetAnotherConfigLib {
         return YetAnotherConfigLib.createBuilder()
-            .title(Text.translatable("disconnect_timer.config.title"))
+            .title(Component.translatable("disconnect_timer.config.title"))
             .category(createMainCategory())
             .build()
     }
     private fun createMainCategory(): ConfigCategory {
         return ConfigCategory.createBuilder()
-            .name(Text.translatable("disconnect_timer.config.title"))
-            .tooltip(Text.literal("meow"))
+            .name(Component.translatable("disconnect_timer.config.title"))
+            .tooltip(Component.literal("meow"))
             .option(
                         Option.createBuilder<Boolean?>()
-                            .name(Text.translatable("disconnect_timer.config.enable_mod"))
-                            .description(OptionDescription.of(Text.translatable("disconnect_timer.config.enable_mod.tooltip")))
+                            .name(Component.translatable("disconnect_timer.config.enable_mod"))
+                            .description(OptionDescription.of(Component.translatable("disconnect_timer.config.enable_mod.tooltip")))
                             .binding(
                                 true,
                                 { this.modEnabled },
@@ -51,8 +50,8 @@ class DisconnectConfig {
             )
             .option (
                 Option.createBuilder<Double>()
-                    .name(Text.translatable("disconnect_timer.config.timer"))
-                    .description(OptionDescription.of(Text.translatable("disconnect_timer.config.timer.tooltip")))
+                    .name(Component.translatable("disconnect_timer.config.timer"))
+                    .description(OptionDescription.of(Component.translatable("disconnect_timer.config.timer.tooltip")))
                     .binding(
                         3.0,
                         { this.timer},
@@ -63,8 +62,8 @@ class DisconnectConfig {
             )
             .option(
                 Option.createBuilder<Boolean?>()
-                    .name(Text.translatable("disconnect_timer.config.enable_singleplayer"))
-                    .description(OptionDescription.of(Text.translatable("disconnect_timer.config.enable_singleplayer.tooltip")))
+                    .name(Component.translatable("disconnect_timer.config.enable_singleplayer"))
+                    .description(OptionDescription.of(Component.translatable("disconnect_timer.config.enable_singleplayer.tooltip")))
                     .binding(
                         true,
                         { this.applyToSingleplayer },
@@ -83,7 +82,7 @@ class DisconnectConfig {
 
 object ConfigManager {
     val HANDLER: ConfigClassHandler<DisconnectConfig> = ConfigClassHandler.createBuilder(DisconnectConfig::class.java)
-        .id(Identifier.of("disconnecttimer", "disconnect_timer_config"))
+        .id(Identifier.fromNamespaceAndPath("disconnecttimer", "disconnect_timer_config"))
         .serializer { config ->
             GsonConfigSerializerBuilder.create(config)
                 .setPath(FabricLoader.getInstance().configDir.resolve ("disconnect_timer.json"))
