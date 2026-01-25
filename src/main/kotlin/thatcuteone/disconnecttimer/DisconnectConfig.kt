@@ -33,7 +33,7 @@ class DisconnectConfig {
     private fun createMainCategory(): ConfigCategory {
         return ConfigCategory.createBuilder()
             .name(Component.translatable("disconnect_timer.config.title"))
-            .tooltip(Component.literal("meow"))
+            .tooltip(Component.literal(""))
             .option(
                         Option.createBuilder<Boolean?>()
                             .name(Component.translatable("disconnect_timer.config.enable_mod"))
