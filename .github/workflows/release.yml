@@ -32,7 +32,7 @@ jobs:
       - name: Read changelog file
         id: read-changelog
         run: |
-          CHANGELOG=$(cat CHANGELOG.md)
+          CHANGELOG=$(cat changelog.md)
           CHANGELOG="${CHANGELOG//'%0A'/$'\n'}"
           CHANGELOG="${CHANGELOG//'%0D'/$'\r'}"
           CHANGELOG="${CHANGELOG//'%25'/'%'}"
