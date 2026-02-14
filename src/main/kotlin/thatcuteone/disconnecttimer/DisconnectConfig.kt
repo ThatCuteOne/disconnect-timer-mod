@@ -9,7 +9,7 @@ import dev.isxander.yacl3.config.v2.api.SerialEntry
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.network.chat.Component
-import net.minecraft.resources.Identifier
+import net.minecraft.resources.ResourceLocation
 
 
 class DisconnectConfig {
@@ -82,7 +82,7 @@ class DisconnectConfig {
 
 object ConfigManager {
     val HANDLER: ConfigClassHandler<DisconnectConfig> = ConfigClassHandler.createBuilder(DisconnectConfig::class.java)
-        .id(Identifier.fromNamespaceAndPath("disconnecttimer", "disconnect_timer_config"))
+        .id(ResourceLocation.tryBuild("disconnecttimer", "disconnect_timer_config"))
         .serializer { config ->
             GsonConfigSerializerBuilder.create(config)
                 .setPath(FabricLoader.getInstance().configDir.resolve ("disconnect_timer.json"))
