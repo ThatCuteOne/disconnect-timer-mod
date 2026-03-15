@@ -10,14 +10,15 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import static thatcuteone.disconnecttimer.DisconnectConfigKt.config;
+import thatcuteone.disconnecttimer.ConfigManager;
+import thatcuteone.disconnecttimer.DisconnectConfig;
 
 
 @Mixin(PauseScreen.class)
 public class GameMenuScreenMixin {
     private Double timer;
     private Component original_text;
+    private DisconnectConfig config = ConfigManager.getConfig();
     @Shadow
     @Nullable
     private Button disconnectButton;

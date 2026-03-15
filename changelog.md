@@ -1,1 +1,2 @@
-initial release
+- update to 26.1-pre-2
+- remove kotlin dependency
