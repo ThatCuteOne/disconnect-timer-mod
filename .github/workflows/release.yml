@@ -53,4 +53,4 @@ jobs:
           files: build/libs/!(*-@(dev|sources|all)).jar
           version-type: release
           loaders: fabric quilt
-          game-version-filter: releases
+          game-version-filter: any
