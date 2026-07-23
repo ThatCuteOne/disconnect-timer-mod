@@ -26,7 +26,7 @@ public class GameMenuScreenMixin {
 	@Inject(at = @At("TAIL"), method = "createPauseMenu")
     private void handleExitButtonState(CallbackInfo ci) {
         if (!config.modEnabled) return;
-        if (Minecraft.getInstance().isSingleplayer() && !config.applyToSingleplayer){
+        if (Minecraft.getInstance().isLocalServer() && !config.applyToSingleplayer){
             return;
         }
         timer = config.timer;
@@ -41,7 +41,7 @@ public class GameMenuScreenMixin {
     @Inject(method = "tick", at = @At("TAIL"))
     private void checkButtonState(CallbackInfo ci) {
         if (!config.modEnabled) return;
-        if (Minecraft.getInstance().isSingleplayer() && !config.applyToSingleplayer){
+        if (Minecraft.getInstance().isLocalServer() && !config.applyToSingleplayer){
             return;
         }
         timer -= 0.05d;

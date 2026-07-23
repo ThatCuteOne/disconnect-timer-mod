@@ -1,7 +1,6 @@
 plugins {
 	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
-	//id "org.jetbrains.kotlin.jvm" version "2.2.20"
 }
 
 version = project.mod_version
@@ -18,7 +17,7 @@ repositories {
     }
     maven {
         name = "Terraformers"
-        url = "https://maven.terraformersmc.com/"
+        url = "https://maven.terraformersmc.com/repository/maven-terraformers"
     }
 	// Add repositories to retrieve artifacts from in here.
 	// You should only use this when depending on other mods because
