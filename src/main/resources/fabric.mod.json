@@ -16,7 +16,8 @@
     },
 	"contact": {
 		"sources": "https://github.com/ThatCuteOne/disconnect-timer-mod",
-        "issues": "https://github.com/ThatCuteOne/disconnect-timer-mod"
+        "issues": "https://github.com/ThatCuteOne/disconnect-timer-mod",
+		"website": "https://modrinth.com/mod/disconnect-timer"
 	},
 	"license": "GPL-3.0",
 	"icon": "assets/disconnect-timer/icon.png",
