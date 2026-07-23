@@ -1,2 +1,1 @@
-- update to 26.1-pre-2
-- remove kotlin dependency
+- update to 26.2
